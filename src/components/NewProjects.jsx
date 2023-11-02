@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const labelCssClasses = "text-sm font-bold uppercase text-stone-500";
 const inputCssClasses =
