@@ -1,3 +1,4 @@
+import data from "./store/data/dummyProjectsData";
 function ProjectSideBar(props) {
   return (
     <aside className="w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md: w-72 rounded-r-xl">
@@ -12,9 +13,19 @@ function ProjectSideBar(props) {
           + Add Projects
         </button>
       </div>
-      <ul>
-        <li>Projects 1</li>
-        <li>Projects 2</li>
+      <ul className="mt-8">
+        {data.map((project) => {
+          return (
+            <li key={project.id}>
+              <button
+                className="w-full text-left px-2 py-1 rounded-sm my-1 text-stone-400"
+                onClick={props.veiwingProject(project)}
+              >
+                {project.title}
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </aside>
   );

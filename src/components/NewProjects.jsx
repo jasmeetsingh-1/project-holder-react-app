@@ -1,30 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import ProjectContext from "./store/project-context";
 
 const labelCssClasses = "text-sm font-bold uppercase text-stone-500";
 const inputCssClasses =
   "w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600";
 
 function NewProject(props) {
-  //   const [labelInput, setLabelInput] = useState();
-  //   const [inputArea, setInputArea] = useState();
-  //   function inputHandler(id, value) {
-  //     if (id === "label") {
-  //       setLabelInput(value);
-  //     } else if (id === "textarea") {
-  //       setInputArea(value);
-  //     }
-  //   }
-  //   useEffect(() => {
-  //     const delay = setTimeout(() => {
-  //       const inputData = {
-  //         label: labelInput,
-  //         input: inputArea,
-  //       };
-  //       console.log(inputData);
-  //     }, 1000);
-
-  //     return () => clearTimeout(delay);
-  //   }, [labelInput, inputArea]);
+  const context = useContext(ProjectContext);
   const [titleField, setTitleField] = useState("");
   const [descriptionField, setDescriptionField] = useState("");
   const [dueDateField, setDueDateField] = useState("");
@@ -47,7 +29,9 @@ function NewProject(props) {
       description: descriptionField,
       dueDate: new Date(dueDateField),
     };
-    console.log(projectData);
+    console.log("button clicked: ", projectData);
+    console.log("list:", context.items);
+    context.addItem(projectData);
     setTitleField("");
     setDescriptionField("");
     setDueDateField("");
@@ -58,10 +42,22 @@ function NewProject(props) {
     setDueDateField("");
     props.cancelButton();
   }
+  function clearHandler() {
+    setTitleField("");
+    setDescriptionField("");
+    setDueDateField("");
+  }
   return (
     <form onSubmit={submitHandler} className="w-[35rem] mt-16">
       <menu className="flex items-center justify-end gap-4 my-4">
         <li>
+          <button
+            type="button"
+            onClick={clearHandler}
+            className="text-stone-800 hover: text-stone-950 pr-4"
+          >
+            Clear
+          </button>
           <button
             type="button"
             onClick={cancelHandler}
