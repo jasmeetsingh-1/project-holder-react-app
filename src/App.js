@@ -5,8 +5,6 @@ import NewProject from "./components/NewProjects";
 import WelcomePage from "./components/welcomePage";
 import ProjectDisplay from "./components/projects/projectDisplay";
 
-import data from "./components/store/data/dummyProjectsData";
-
 function App() {
   const [addingNewProject, setAddingNewProject] = useState(false);
   const [projectSelected, setProjectSelected] = useState(false);
