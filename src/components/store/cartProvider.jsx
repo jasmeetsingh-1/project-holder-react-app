@@ -6,14 +6,16 @@ function projectListReducer(state, action) {
   //and second it will contain action.type
   if (action.type === "add") {
     //new project coming up
-    const updatedItems = state.projectsList.concat(action.item);
-    console.log("in adding");
-    console.log("updated Items: ", updatedItems);
+    const updatedItems = state.items.concat(action.item);
+
     return {
       items: updatedItems,
     };
   } else if (action.type === "remove") {
-    //will remove the last
+    const updatedItems = state.items.filter((item) => item.id !== action.id);
+    return {
+      items: updatedItems,
+    };
   }
 }
 
@@ -32,6 +34,7 @@ function CartProvider(props) {
 
   function removingProject(id) {
     //project removing
+    projectListReducerFunction({ type: "remove", id: id });
   }
 
   const projectFinalList = {

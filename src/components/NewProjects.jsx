@@ -29,9 +29,9 @@ function NewProject(props) {
       description: descriptionField,
       dueDate: new Date(dueDateField),
     };
-    console.log("button clicked: ", projectData);
-    console.log("list:", context.items);
+
     context.addItem(projectData);
+
     setTitleField("");
     setDescriptionField("");
     setDueDateField("");

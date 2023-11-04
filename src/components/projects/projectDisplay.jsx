@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import ProjectContext from "../store/project-context";
+import TaskSection from "./taskSection";
 //this component will get only one project detials as the props
 // the one that would be selected
 function ProjectDisplay({ project }) {
@@ -8,6 +11,8 @@ function ProjectDisplay({ project }) {
     day: "numeric",
   });
 
+  const context = useContext(ProjectContext);
+
   return (
     <div className="w-[35rem] mt-16">
       <header className="pb-4 mb-4 border-b-2 border-stone-300">
@@ -15,7 +20,10 @@ function ProjectDisplay({ project }) {
           <h1 className="text-3xl font-bold text-stone-600 mb-2">
             {project.title}
           </h1>
-          <button className="text-stone-600 hover:text-stone-950">
+          <button
+            className="text-stone-600 hover:text-stone-950"
+            onClick={() => context.removeItem(project.id)}
+          >
             Delete
           </button>
         </div>
@@ -24,7 +32,7 @@ function ProjectDisplay({ project }) {
           {project.description}
         </p>
       </header>
-      TASKS
+      <TaskSection />
     </div>
   );
 }
