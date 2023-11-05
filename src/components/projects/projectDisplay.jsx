@@ -4,7 +4,7 @@ import ProjectContext from "../store/project-context";
 import TaskSection from "./taskSection";
 //this component will get only one project detials as the props
 // the one that would be selected
-function ProjectDisplay({ project }) {
+function ProjectDisplay({ project, deleteHandler }) {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-us", {
     year: "numeric",
     month: "short",
@@ -22,7 +22,10 @@ function ProjectDisplay({ project }) {
           </h1>
           <button
             className="text-stone-600 hover:text-stone-950"
-            onClick={() => context.removeItem(project.id)}
+            onClick={() => {
+              context.removeItem(project.id);
+              deleteHandler();
+            }}
           >
             Delete
           </button>

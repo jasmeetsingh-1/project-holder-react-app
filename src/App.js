@@ -23,7 +23,13 @@ function App() {
   function displayingProjectHandler(data) {
     setAddingNewProject(false);
     setProjectSelected(true);
-    setDisplayingProject(<ProjectDisplay project={data} />);
+    setDisplayingProject(
+      <ProjectDisplay project={data} deleteHandler={projectDeleted} />
+    );
+  }
+  function projectDeleted() {
+    setProjectSelected(false);
+    setDisplayingProject(false);
   }
   return (
     <main className="h-screen my-8 flex gap-8">
