@@ -21,11 +21,19 @@ function TaskSection({ projectBeingDisplay, newTaskAddition }) {
           newTaskAddition(newTask);
         }}
       />
-      {haveTask && <p>no task</p>}
+      {haveTask && (
+        <p className="text-stone-800 my-4">
+          This project does not have any task yet.
+        </p>
+      )}
       {!haveTask && (
-        <ul>
+        <ul className="p-4 mt-8 rounded-md bg-stone-100">
           {projectToDisplay[0].task.map((item) => {
-            return <li key={item}>{item}</li>;
+            return (
+              <li key={item} className="flex justify-between my-4">
+                {item}
+              </li>
+            );
           })}
         </ul>
       )}
