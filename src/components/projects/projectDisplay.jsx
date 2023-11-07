@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 
 import ProjectContext from "../store/project-context";
 import TaskSection from "./taskSection";
-//this component will get only one project detials as the props
-// the one that would be selected
+
 function ProjectDisplay({ project, deleteHandler }) {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-us", {
     year: "numeric",
@@ -12,6 +11,14 @@ function ProjectDisplay({ project, deleteHandler }) {
   });
 
   const context = useContext(ProjectContext);
+
+  function addingNewTask(newTask) {
+    const taskInput = {
+      id: project.id,
+      taskAdding: newTask,
+    };
+    context.addTask(taskInput);
+  }
 
   return (
     <div className="w-[35rem] mt-16">
@@ -35,7 +42,10 @@ function ProjectDisplay({ project, deleteHandler }) {
           {project.description}
         </p>
       </header>
-      <TaskSection />
+      <TaskSection
+        newTaskAddition={addingNewTask}
+        projectBeingDisplay={project} 
+      />
     </div>
   );
 }

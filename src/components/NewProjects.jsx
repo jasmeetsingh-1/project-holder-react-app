@@ -28,6 +28,7 @@ function NewProject(props) {
       title: titleField,
       description: descriptionField,
       dueDate: new Date(dueDateField),
+      task: [],
     };
 
     context.addItem(projectData);
