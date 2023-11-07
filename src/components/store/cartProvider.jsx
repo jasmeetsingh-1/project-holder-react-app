@@ -18,7 +18,7 @@ function projectListReducer(state, action) {
       (item) => item.id === action.data.id
     );
     const itemToUdpate = state.items[indexOFItem];
-    const newTaskList = [...itemToUdpate.task, action.data.taskAdding];
+    const newTaskList = [action.data.taskAdding, ...itemToUdpate.task];
     const itemUpdated = {
       ...itemToUdpate,
       task: newTaskList,
